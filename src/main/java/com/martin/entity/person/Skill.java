@@ -6,16 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
-public class PersonalInfo {
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
-
-    // PersonalInfo fields
-    private String address;
-    private String phoneNumber;
+    private String skillName;
+    private String level;
 }

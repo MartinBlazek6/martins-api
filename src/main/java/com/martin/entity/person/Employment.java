@@ -6,16 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
-public class PersonalInfo {
+public class Employment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String project;
+    private String technologies;
+    private String duration;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    // PersonalInfo fields
-    private String address;
-    private String phoneNumber;
 }
