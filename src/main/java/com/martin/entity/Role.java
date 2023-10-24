@@ -18,10 +18,6 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;
     }

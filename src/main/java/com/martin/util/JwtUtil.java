@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +15,12 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "learn_programming_yourself";
 
-    private static final int TOKEN_VALIDITY = 3600 * 5;
+    private static final String SECRET_KEY = "secret"; //todo env_var
+
+    private static final int TOKEN_VALIDITY_HOURS = 5; //todo env_var
+
+
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -46,6 +50,8 @@ public class JwtUtil {
     }
 
     public String generateToken(UserDetails userDetails) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.HOUR_OF_DAY, TOKEN_VALIDITY_HOURS);
 
         Map<String, Object> claims = new HashMap<>();
 
@@ -53,7 +59,7 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + calendar.getTimeInMillis()))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
