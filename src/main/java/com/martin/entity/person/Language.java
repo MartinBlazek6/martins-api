@@ -1,8 +1,13 @@
 package com.martin.entity.person;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

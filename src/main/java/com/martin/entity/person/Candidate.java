@@ -1,10 +1,16 @@
 package com.martin.entity.person;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
+@Getter
+@Setter
 public class Candidate {
 
     @Id
@@ -29,6 +35,7 @@ public class Candidate {
     @OneToOne(mappedBy = "candidate")
     private Resume resume;
 
+    private String description;
     private String firstName;
     private String lastName;
     private String email;
