@@ -20,7 +20,7 @@ public class Employment {
     private String technologies;
     private String duration;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 

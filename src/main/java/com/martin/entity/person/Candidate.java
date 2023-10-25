@@ -20,13 +20,13 @@ public class Candidate {
     @OneToOne
     private PersonalInfo personalInfo;
 
-    @OneToMany(mappedBy = "candidate")
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private List<Employment> employments;
 
-    @OneToMany(mappedBy = "candidate")
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private List<Education> studies;
 
-    @OneToMany(mappedBy = "candidate")
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private List<Skill> skills;
 
     @OneToMany(mappedBy = "candidate")
