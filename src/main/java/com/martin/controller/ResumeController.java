@@ -31,19 +31,20 @@ public class ResumeController {
     @PostMapping("/saveAstronautsAndCraft")
     public ResponseEntity<String> saveAstronautsAndCraft(@RequestBody ResumeDTO resumeDTO) {
         try {
-            // Save the Craft to the database
             Resume resume = resumeDTO.getResume();
             PersonalDetails personalDetails = resumeDTO.getPersonalDetails();
-            resumeRepository.save(resume);
+            var savedResume = resumeRepository.save(resume);
 
             personalDetails.setResume(resume);
-            personalDetailsRepository.save(personalDetails);
-            // Save the Astronauts to the database
+            var savedPd = personalDetailsRepository.save(personalDetails);
+
             List<Employment> employments = resumeDTO.getEmployments();
             for (Employment employment : employments) {
                 employment.setResume(resume);
                 employmentRepository.save(employment);
             }
+            savedResume.setPersonalDetails(savedPd);
+            resumeRepository.save(savedResume);
 
             return new ResponseEntity<>("Astronauts and Craft saved successfully", HttpStatus.OK);
         } catch (Exception e) {
