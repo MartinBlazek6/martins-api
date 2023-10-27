@@ -20,8 +20,8 @@ public class Employment {
     private String firstName;
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Many astronauts can have one craft
-    @JoinColumn(name = "resume_id")    // The foreign key column in Astronaut table
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "resume_id")
     private Resume resume;
 
 
