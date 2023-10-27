@@ -1,0 +1,21 @@
+{
+  "resume": {
+    "craftName": "YourCraft"
+  },
+  "personalDetails": {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phoneNumber": "123-456-7890",
+    "location": "New York"
+  },
+  "employments": [
+    {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith"
+    }
+  ]
+}
