@@ -1,5 +1,7 @@
 package com.martin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,14 +18,16 @@ import java.util.List;
 public class Resume {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String craftName;
+    private String profession;
 
-    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employment> employments;
 
-    @OneToOne
+    @JsonManagedReference
+    @OneToOne(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalDetails personalDetails;
 
 

@@ -1,12 +1,12 @@
 package com.martin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -15,21 +15,22 @@ import java.util.UUID;
 @Data
 public class Employment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String firstName;
-    private String lastName;
+    private String projectName;
+    private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "resume_id")
+    @JsonBackReference
     private Resume resume;
 
 
     @Override
     public String toString() {
         return "Astronaut{" +
-                "name='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "name='" + projectName + '\'' +
+                ", lastName='" + description + '\'' +
                 '}';
     }
 }
