@@ -1,5 +1,6 @@
 package com.martin.service;
 
+import com.martin.exceptions.UserAlreadyExistException;
 import com.martin.repositories.RoleRepository;
 import com.martin.repositories.UserRepository;
 import com.martin.entity.Role;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -48,14 +50,22 @@ public class UserService {
 
     }
 
-    public User registerNewUser(User user) {
-        Role role = roleRepository.findById("User").orElseThrow(()-> new RuntimeException("role User not found"));
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(role);
-        user.setRole(userRoles);
-        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+    private boolean isUserUnique(String userName){
+        Optional<User> user = userRepository.findByUserName(userName);
+        return user.isEmpty();
+    }
 
-        return userRepository.save(user);
+    public User registerNewUser(User user) {
+        if (isUserUnique(user.getUserName())){
+            Role role = roleRepository.findById("User").orElseThrow(()-> new RuntimeException("role User not found"));
+            Set<Role> userRoles = new HashSet<>();
+            userRoles.add(role);
+            user.setRole(userRoles);
+            user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+
+            return userRepository.save(user);
+        }
+        throw new UserAlreadyExistException(user.getUserName() + ": already exist");
     }
 
     public String getEncodedPassword(String password) {
