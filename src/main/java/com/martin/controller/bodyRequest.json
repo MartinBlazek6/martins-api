@@ -1,6 +1,6 @@
 {
   "resume": {
-    "craftName": "YourCraft"
+    "profession": "Back end developer"
   },
   "personalDetails": {
     "name": "John Doe",
@@ -10,12 +10,12 @@
   },
   "employments": [
     {
-      "firstName": "John",
-      "lastName": "Doe"
+      "projectName": "John",
+      "description": "Doe"
     },
     {
-      "firstName": "Jane",
-      "lastName": "Smith"
+      "projectName": "Jane",
+      "description": "Smith"
     }
   ]
 }
