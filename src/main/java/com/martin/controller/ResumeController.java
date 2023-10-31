@@ -1,22 +1,16 @@
 package com.martin.controller;
 
-import com.martin.entity.Employment;
-import com.martin.entity.PersonalDetails;
-import com.martin.entity.Resume;
+import com.martin.entity.candidate.Resume;
 import com.martin.entity.records.ResumeDTO;
-import com.martin.repositories.EmploymentRepository;
-import com.martin.repositories.PersonalDetailsRepository;
 import com.martin.repositories.ResumeRepository;
 import com.martin.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @Slf4j
