@@ -11,6 +11,4 @@ import java.util.List;
 public interface ResumeService {
 
     void saveResume(ResumeDTO resumeDTO);
-
-    <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository);
 }

@@ -26,36 +26,6 @@ public class ResumeServiceImpl implements ResumeService {
     private final EmploymentRepository employmentRepository;
     private final EducationRepository educationRepository;
 
-//    @Override
-//    public void saveResume(ResumeDTO resumeDTO) {
-//        Resume resume = resumeDTO.getResume();
-//        PersonalDetails personalDetails = resumeDTO.getPersonalDetails();
-//
-//        Resume savedResume = resumeRepository.save(resume);
-//
-//        personalDetails.setResume(savedResume);
-//
-//        PersonalDetails savedPd = personalDetailsRepository.save(personalDetails);
-//
-//        List<Employment> employments = resumeDTO.getEmployments();
-//        for (Employment employment : employments) {
-//            employment.setResume(savedResume);
-//            employmentRepository.save(employment);
-//        }
-//
-//        List<Education> educations = resumeDTO.getEducations();
-//        for (Education education : educations) {
-//            education.setResume(savedResume);
-//            educationRepository.save(education);
-//        }
-//
-////        mapAndSaveRelatedEntities(savedResume, resumeDTO, Collections.singletonList(educations));
-////        mapAndSaveRelatedEntities(savedResume, resumeDTO, Collections.singletonList(employments));
-//
-//        savedResume.setPersonalDetails(savedPd);
-//        resumeRepository.save(savedResume);
-//    }
-
     public void saveResume(ResumeDTO resumeDTO) {
         Resume resume = resumeDTO.getResume();
         PersonalDetails personalDetails = resumeDTO.getPersonalDetails();
@@ -70,9 +40,7 @@ public class ResumeServiceImpl implements ResumeService {
         saveRelatedEntities(savedResume, resumeDTO.getEmployments(), employmentRepository);
         saveRelatedEntities(savedResume, resumeDTO.getEducations(), educationRepository);
     }
-
-    @Override
-    public  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+    private  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
         for (T entity : entities) {
             switch (entity.getClass().getSimpleName()) {
                 case "Employment" -> ((Employment) entity).setResume(resume);
