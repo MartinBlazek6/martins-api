@@ -1,6 +1,5 @@
-package com.martin.entity;
+package com.martin.entity.candidate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
