@@ -26,6 +26,10 @@ public class Resume {
     private List<Employment> employments;
 
     @JsonManagedReference
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Education> educations;
+
+    @JsonManagedReference
     @OneToOne(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalDetails personalDetails;
 
