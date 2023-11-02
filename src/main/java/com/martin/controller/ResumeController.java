@@ -32,6 +32,12 @@ public class ResumeController {
         }
     }
 
+    @GetMapping("/forRecruiters/martinsResume")
+    public ResponseEntity<Resume> getMartinsResume() {
+        Resume resumes = resumeRepository.findAll().stream().findFirst().orElseThrow();
+        return new ResponseEntity<>(resumes, HttpStatus.OK);
+    }
+
 
     @GetMapping("/allResumes")
     public ResponseEntity<List<Resume>> getAllResumes() {
