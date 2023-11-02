@@ -49,9 +49,7 @@ public class ResumeServiceImpl implements ResumeService {
                     case "HardSkills" -> ((HardSkills) entity).setResume(resume);
                     case "SoftSkills" -> ((SoftSkills) entity).setResume(resume);
 
-                    default -> {
-                        log.error("Something went wrong!");
-                    }
+                    default -> log.error("Something went wrong!");
                 }
                 repository.save(entity);
             }
