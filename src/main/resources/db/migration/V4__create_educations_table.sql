@@ -1,5 +1,4 @@
--- db.migration/V4__create_educations_table.sql
-CREATE TABLE educations (
+CREATE TABLE education (
                             id INT AUTO_INCREMENT PRIMARY KEY,
                             name VARCHAR(255),
                             description VARCHAR(255),
