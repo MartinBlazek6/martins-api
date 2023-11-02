@@ -22,6 +22,24 @@
       "duration": "11/2022 - 06/2023",
       "position": "Software developer in test",
       "technologies": "•Serenity BDD •Java 17 •JUnit 5 •VSC (GitHub) •SQL •Docker •Kafka •JavaScript"
+    },
+    {
+      "projectName": "Software Development Academy",
+      "duration": "02/2022 - Present",
+      "position": "Java Trainer",
+      "technologies": "•Spring Boot 2.7 •Hibernate •Java 17 •REST •Mockito/MockMVC •SQL •CI/CD •Thymeleaf/React/SVELTE"
+    },
+    {
+      "projectName": "Thermo Fisher scientific",
+      "duration": "08/2021 - 11/2022",
+      "position": "QA Automation Engineer",
+      "technologies": "•RobotFramework •Python 2.7 •VSC (GitLab) •VMware"
+    },
+    {
+      "projectName": "ComAp",
+      "duration": "08/2021 - 11/2022",
+      "position": "QA Automation Engineer",
+      "technologies": "•TestComplete •Python 2.7 •VSC (GitLab)"
     }
   ],
   "educations": [

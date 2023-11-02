@@ -38,5 +38,13 @@ public class Resume {
     @OneToOne(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private PersonalDetails personalDetails;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HardSkills> hardSkills;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SoftSkills> softSkills;
+
 
 }

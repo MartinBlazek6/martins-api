@@ -3,6 +3,7 @@ package com.martin.configuration;
 import com.martin.service.JwtService;
 import com.martin.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -39,12 +41,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
+                log.error("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+                log.error("JWT Token has expired");
             }
         } else {
-            System.out.println("JWT token does not start with Bearer");
+            log.warn("Request without authorisation");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
