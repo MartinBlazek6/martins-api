@@ -53,5 +53,23 @@
       "duration": "09/2007 - 06/2015",
       "name": "Mikulas Galanda Gymnasium"
     }
+  ],
+  "hardSkills": [
+    {
+      "technology": "Spring Boot",
+      "level": 5
+    },
+    {
+      "technology": "OOP",
+      "level": 4
+    }
+  ],
+  "softSkills": [
+    {
+      "skill": "Can work under pressure"
+    },
+    {
+      "skill": "Team player"
+    }
   ]
 }

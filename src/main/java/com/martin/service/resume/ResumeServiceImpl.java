@@ -1,9 +1,6 @@
 package com.martin.service.resume;
 
-import com.martin.entity.candidate.Education;
-import com.martin.entity.candidate.Employment;
-import com.martin.entity.candidate.PersonalDetails;
-import com.martin.entity.candidate.Resume;
+import com.martin.entity.candidate.*;
 import com.martin.entity.records.ResumeDTO;
 import com.martin.repositories.*;
 import lombok.RequiredArgsConstructor;
@@ -49,8 +46,11 @@ public class ResumeServiceImpl implements ResumeService {
                 switch (entity.getClass().getSimpleName()) {
                     case "Employment" -> ((Employment) entity).setResume(resume);
                     case "Education" -> ((Education) entity).setResume(resume);
+                    case "HardSkills" -> ((HardSkills) entity).setResume(resume);
+                    case "SoftSkills" -> ((SoftSkills) entity).setResume(resume);
 
                     default -> {
+                        log.error("Something went wrong!");
                     }
                 }
                 repository.save(entity);
