@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.net.URL;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,8 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String profession;
+    private String GDPR;
+    private URL sourceCodeOfThisProject;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
