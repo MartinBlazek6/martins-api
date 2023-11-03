@@ -19,8 +19,10 @@ public class Employment {
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String duration;
+    private String position;
     private String projectName;
-    private String description;
+    private String technologies;
 
     @ManyToOne
     @JoinColumn(name = "resume_id")
@@ -32,7 +34,7 @@ public class Employment {
     public String toString() {
         return "Astronaut{" +
                 "name='" + projectName + '\'' +
-                ", lastName='" + description + '\'' +
+                ", lastName='" + technologies + '\'' +
                 '}';
     }
 }

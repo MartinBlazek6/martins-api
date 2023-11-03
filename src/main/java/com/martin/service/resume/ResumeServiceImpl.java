@@ -1,20 +1,15 @@
 package com.martin.service.resume;
 
-import com.martin.entity.candidate.Education;
-import com.martin.entity.candidate.Employment;
-import com.martin.entity.candidate.PersonalDetails;
-import com.martin.entity.candidate.Resume;
+import com.martin.entity.candidate.*;
 import com.martin.entity.records.ResumeDTO;
-import com.martin.repositories.EducationRepository;
-import com.martin.repositories.EmploymentRepository;
-import com.martin.repositories.PersonalDetailsRepository;
-import com.martin.repositories.ResumeRepository;
+import com.martin.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -25,6 +20,8 @@ public class ResumeServiceImpl implements ResumeService {
     private final PersonalDetailsRepository personalDetailsRepository;
     private final EmploymentRepository employmentRepository;
     private final EducationRepository educationRepository;
+    private final HardSkillsRepository hardSkillsRepository;
+    private final SoftSkillsRepository softSkillsRepository;
 
     public void saveResume(ResumeDTO resumeDTO) {
         Resume resume = resumeDTO.getResume();
@@ -39,17 +36,23 @@ public class ResumeServiceImpl implements ResumeService {
 
         saveRelatedEntities(savedResume, resumeDTO.getEmployments(), employmentRepository);
         saveRelatedEntities(savedResume, resumeDTO.getEducations(), educationRepository);
+        saveRelatedEntities(savedResume, resumeDTO.getHardSkills(), hardSkillsRepository);
+        saveRelatedEntities(savedResume, resumeDTO.getSoftSkills(), softSkillsRepository);
     }
     private  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
-        for (T entity : entities) {
-            switch (entity.getClass().getSimpleName()) {
-                case "Employment" -> ((Employment) entity).setResume(resume);
-                case "Education" -> ((Education) entity).setResume(resume);
+        if (entities != null){
+            log.info("saving::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
+            for (T entity : entities) {
+                switch (entity.getClass().getSimpleName()) {
+                    case "Employment" -> ((Employment) entity).setResume(resume);
+                    case "Education" -> ((Education) entity).setResume(resume);
+                    case "HardSkills" -> ((HardSkills) entity).setResume(resume);
+                    case "SoftSkills" -> ((SoftSkills) entity).setResume(resume);
 
-                default -> {
+                    default -> log.error("Something went wrong!");
                 }
+                repository.save(entity);
             }
-            repository.save(entity);
         }
     }
 }
