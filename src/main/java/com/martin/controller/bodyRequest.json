@@ -1,21 +1,75 @@
 {
   "resume": {
+    "sourceCodeOfThisProject": "https://github.com/MartinBlazek6/martins-api",
+    "gdpr": "I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.",
     "profession": "Back end developer"
   },
   "personalDetails": {
-    "name": "John Doe",
-    "email": "john@example.com",
+    "name": "Martin Blazek",
+    "email": "martinblazek6@gmail.com",
     "phoneNumber": "123-456-7890",
-    "location": "New York"
+    "location": "Martin (Slovakia)"
   },
   "employments": [
     {
-      "projectName": "John",
-      "description": "Doe"
+      "projectName": "CHG healthcarete",
+      "duration": "06/2022 - Present",
+      "position": "Backend Developer",
+      "technologies": "•Java 17 •PL SQL •JUnit 5 •Spring Boot 2.7 •VSC (GitHub) •SQL •Docker •Kafka •Vue.js"
     },
     {
-      "projectName": "Jane",
-      "description": "Smith"
+      "projectName": "CHG healthcarete",
+      "duration": "11/2022 - 06/2023",
+      "position": "Software developer in test",
+      "technologies": "•Serenity BDD •Java 17 •JUnit 5 •VSC (GitHub) •SQL •Docker •Kafka •JavaScript"
+    },
+    {
+      "projectName": "Software Development Academy",
+      "duration": "02/2022 - Present",
+      "position": "Java Trainer",
+      "technologies": "•Spring Boot 2.7 •Hibernate •Java 17 •REST •Mockito/MockMVC •SQL •CI/CD •Thymeleaf/React/SVELTE"
+    },
+    {
+      "projectName": "Thermo Fisher scientific",
+      "duration": "08/2021 - 11/2022",
+      "position": "QA Automation Engineer",
+      "technologies": "•RobotFramework •Python 2.7 •VSC (GitLab) •VMware"
+    },
+    {
+      "projectName": "ComAp",
+      "duration": "08/2021 - 11/2022",
+      "position": "QA Automation Engineer",
+      "technologies": "•TestComplete •Python 2.7 •VSC (GitLab)"
+    }
+  ],
+  "educations": [
+    {
+      "description": "Faculty of Applied Informatics",
+      "duration": "09/2017 - 06/2022",
+      "name": "Tomas Bata University in Zlín, Zlín"
+    },
+    {
+      "description": "Focused to Applied Informatics and Biology",
+      "duration": "09/2007 - 06/2015",
+      "name": "Mikulas Galanda Gymnasium"
+    }
+  ],
+  "hardSkills": [
+    {
+      "technology": "Spring Boot",
+      "level": 5
+    },
+    {
+      "technology": "OOP",
+      "level": 4
+    }
+  ],
+  "softSkills": [
+    {
+      "skill": "Can work under pressure"
+    },
+    {
+      "skill": "Team player"
     }
   ]
 }
