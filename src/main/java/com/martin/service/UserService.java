@@ -25,32 +25,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void initRoleAndUser() {
-
-//        Role adminRole = new Role();
-//        adminRole.setRoleName("Admin");
-//        adminRole.setRoleDescription("Admin role");
-//        roleRepository.save(adminRole);
-//
-//        Role userRole = new Role();
-//        userRole.setRoleName("User");
-//        userRole.setRoleDescription("Default role for newly created record");
-//        roleRepository.save(userRole);
-//
-//        User adminUser = new User();
-//        adminUser.setUserName("admin123");
-//        adminUser.setId(1);
-//        adminUser.setUserPassword(getEncodedPassword("admin@pass"));
-//        adminUser.setUserFirstName("admin");
-//        adminUser.setUserLastName("admin");
-//        Set<Role> adminRoles = new HashSet<>();
-//        adminRoles.add(adminRole);
-//        adminUser.setRole(adminRoles);
-//        userRepository.save(adminUser);
-
-    }
-
-    private boolean isUserUnique(String userName){
+    protected boolean isUserUnique(String userName){
         Optional<User> user = userRepository.findByUserName(userName);
         return user.isEmpty();
     }
