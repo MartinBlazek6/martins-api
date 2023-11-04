@@ -14,9 +14,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-
-
-    private static final String SECRET_KEY = "secret"; //todo env_var
+    private static final String SECRET_KEY = System.getenv("JWT_SECRET");
 
     private static final int TOKEN_VALIDITY_HOURS = 5; //todo env_var
 
