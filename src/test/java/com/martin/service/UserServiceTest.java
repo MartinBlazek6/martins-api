@@ -61,7 +61,6 @@ public class UserServiceTest {
 
     @Test
     public void testRegisterNewUserUserAlreadyExists() {
-        assertThat(2).isGreaterThan(3);
         User user = new User();
         user.setUserName("existingUser");
         user.setUserPassword("password");
