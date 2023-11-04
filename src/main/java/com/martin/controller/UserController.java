@@ -21,11 +21,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostConstruct
-    public void initRoleAndUser() {
-        userService.initRoleAndUser();
-    }
-
     @PostMapping({"/registerNewUser"})
     public ResponseEntity<UserRecord> registerNewUser(@RequestBody User user) {
         try {
