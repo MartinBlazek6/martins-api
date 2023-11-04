@@ -1,4 +1,7 @@
 
+# Martins Resume API
+
+The Martins Resume API demonstrates my expertise in Spring Boot, RESTful API development, and backend data management. It offers efficient, database-backed storage and retrieval of resume-related information, including professional experience, education, personal details, and skills. Robust security and documentation are integral components, making it an ideal showcase of my skills in API development for real-world applications.
 ## API Reference
 
 #### Get Martins resume in JSON
