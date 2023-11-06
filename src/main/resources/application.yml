@@ -1,6 +1,13 @@
 spring:
   banner:
     location: classpath:banner.txt
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      INDENT_OUTPUT: true
+
+
+
   application:
     name: flywayapp
   datasource:

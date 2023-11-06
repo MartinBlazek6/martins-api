@@ -7,7 +7,7 @@
   "personalDetails": {
     "name": "Martin Blazek",
     "email": "martinblazek6@gmail.com",
-    "phoneNumber": "123-456-7890",
+    "phoneNumber": "+421 951 013 849",
     "location": "Martin (Slovakia)"
   },
   "employments": [
@@ -57,55 +57,55 @@
   "hardSkills": [
     {
       "technology": "Java",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "Typescript",
-      "level": 3
+      "level": "INTERMEDIATE"
     },
     {
       "technology": "OOP",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "Spring Boot",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "REST",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "SQL",
-      "level": 5
+      "level": "EXPERT"
     },
     {
       "technology": "PL SQL",
-      "level": 3
+      "level": "INTERMEDIATE"
     },
     {
       "technology": "Docker",
-      "level": 3
+      "level": "INTERMEDIATE"
     },
     {
       "technology": "React",
-      "level": 3
+      "level": "INTERMEDIATE"
     },
     {
       "technology": "Vue",
-      "level": 3
+      "level": "INTERMEDIATE"
     },
     {
       "technology": "Next",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "Hibernate",
-      "level": 4
+      "level": "ADVANCED"
     },
     {
       "technology": "GIT",
-      "level": 5
+      "level": "EXPERT"
     }
   ],
   "softSkills": [
