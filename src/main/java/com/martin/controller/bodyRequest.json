@@ -56,12 +56,56 @@
   ],
   "hardSkills": [
     {
-      "technology": "Spring Boot",
-      "level": 5
+      "technology": "Java",
+      "level": 4
+    },
+    {
+      "technology": "Typescript",
+      "level": 3
     },
     {
       "technology": "OOP",
       "level": 4
+    },
+    {
+      "technology": "Spring Boot",
+      "level": 4
+    },
+    {
+      "technology": "REST",
+      "level": 4
+    },
+    {
+      "technology": "SQL",
+      "level": 5
+    },
+    {
+      "technology": "PL SQL",
+      "level": 3
+    },
+    {
+      "technology": "Docker",
+      "level": 3
+    },
+    {
+      "technology": "React",
+      "level": 3
+    },
+    {
+      "technology": "Vue",
+      "level": 3
+    },
+    {
+      "technology": "Next",
+      "level": 4
+    },
+    {
+      "technology": "Hibernate",
+      "level": 4
+    },
+    {
+      "technology": "GIT",
+      "level": 5
     }
   ],
   "softSkills": [
@@ -70,6 +114,9 @@
     },
     {
       "skill": "Team player"
+    },
+    {
+      "skill": "Pro active"
     }
   ]
 }
