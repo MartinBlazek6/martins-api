@@ -4,13 +4,11 @@ import com.martin.service.JwtService;
 import com.martin.entity.JwtRequest;
 import com.martin.entity.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class JwtController {
 
     @Autowired
