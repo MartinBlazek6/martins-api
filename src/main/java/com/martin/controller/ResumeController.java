@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @Slf4j
@@ -33,13 +35,36 @@ public class ResumeController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping("/saveMartinsResume")
+    public ResponseEntity<String> saveMartinsResume(@RequestBody ResumeDTO resumeDTO) {
+        try {
+            resumeService.saveMartinsResume(resumeDTO);
+            return new ResponseEntity<>("Resume saved successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>("Error saving resume", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/forRecruiters/martinsResume")
-    public ResponseEntity<Resume> getMartinsResume() {
-        Resume resumes = resumeRepository.findAll().stream().findFirst().orElseThrow();
-        return new ResponseEntity<>(resumes, HttpStatus.OK);
+    public ResponseEntity<?> getMartinsResume() {
+        try {
+            Resume resumes = resumeRepository.findByMartinsCvIsTrue();
+            return new ResponseEntity<>(resumes, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>("Resume not found", HttpStatus.BAD_REQUEST);
+        }
     }
 
 
+    @DeleteMapping("/forRecruiters/deleteById/{resumeId}")
+    public ResponseEntity<String> deleteById(@PathVariable Long resumeId) {
+        resumeService.deleteResume(resumeId);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('User')")
     @GetMapping("/allResumes")
     public ResponseEntity<List<Resume>> getAllResumes() {
         List<Resume> resumes = resumeRepository.findAll();

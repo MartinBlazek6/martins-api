@@ -11,4 +11,7 @@ import java.util.List;
 public interface ResumeService {
 
     void saveResume(ResumeDTO resumeDTO);
+    void saveMartinsResume(ResumeDTO resumeDTO);
+
+    void deleteResume(Long resumeId);
 }
