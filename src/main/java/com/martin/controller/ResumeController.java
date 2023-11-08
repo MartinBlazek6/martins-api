@@ -28,7 +28,21 @@ public class ResumeController {
     public ResponseEntity<String> saveResume(@RequestBody ResumeDTO resumeDTO) {
         try {
             resumeService.saveResume(resumeDTO);
-            return new ResponseEntity<>("Resume saved successfully", HttpStatus.OK);
+            return new ResponseEntity<>("Resume saved successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>("Error saving resume", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PreAuthorize("hasRole('Admin')")
+    @PatchMapping("/updateResume")
+    public ResponseEntity<String> updateResume(
+            @RequestBody ResumeDTO resumeDTO,
+            @RequestParam Long resumeId) {
+        try {
+            resumeService.updateRelatedEntities(resumeDTO,resumeId);
+            return new ResponseEntity<>("Resume updated successfully", HttpStatus.OK);
         } catch (Exception e) {
             log.error(e.getMessage());
             return new ResponseEntity<>("Error saving resume", HttpStatus.INTERNAL_SERVER_ERROR);

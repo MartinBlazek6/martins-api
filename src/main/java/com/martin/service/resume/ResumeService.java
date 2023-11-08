@@ -14,4 +14,6 @@ public interface ResumeService {
     void saveMartinsResume(ResumeDTO resumeDTO);
 
     void deleteResume(Long resumeId);
+
+    void updateRelatedEntities(ResumeDTO resumeDTO, Long id);
 }
