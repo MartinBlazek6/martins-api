@@ -29,9 +29,10 @@ public class UserService {
         return user.isEmpty();
     }
 
-    public User registerNewUser(User user) {
+    public User registerNewUser(User user,boolean isAdmin) {
         if (isUserUnique(user.getUserName())){
-            Role role = roleRepository.findById("User").orElseThrow(()-> new RuntimeException("role User not found"));
+            Role role = isAdmin ? roleRepository.findById("Admin").orElseThrow(()-> new RuntimeException("role Admin not found"))
+                                : roleRepository.findById("User").orElseThrow(()-> new RuntimeException("role User not found"));
             Set<Role> userRoles = new HashSet<>();
             userRoles.add(role);
             user.setRole(userRoles);

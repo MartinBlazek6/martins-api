@@ -52,7 +52,7 @@ public class UserServiceTest {
 
         when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
 
-        User registeredUser = userService.registerNewUser(user);
+        User registeredUser = userService.registerNewUser(user,false);
 
         Mockito.verify(userRepository).save(user);
         assertThat(registeredUser.getRole()).isEqualTo(Set.of(role));
@@ -67,7 +67,7 @@ public class UserServiceTest {
 
         when(userRepository.findByUserName("existingUser")).thenReturn(Optional.of(user));
 
-        assertThrows(UserAlreadyExistException.class, () -> userService.registerNewUser(user));
+        assertThrows(UserAlreadyExistException.class, () -> userService.registerNewUser(user,false));
     }
 
     @Test

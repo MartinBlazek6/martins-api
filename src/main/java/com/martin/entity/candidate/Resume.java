@@ -19,12 +19,13 @@ import java.util.List;
 public class Resume {
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String profession;
     private String GDPR;
     private URL sourceCodeOfThisProject;
+    @JsonIgnore
+    private boolean martinsCv;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

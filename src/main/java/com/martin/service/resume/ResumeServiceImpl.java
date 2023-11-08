@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -23,6 +22,7 @@ public class ResumeServiceImpl implements ResumeService {
     private final HardSkillsRepository hardSkillsRepository;
     private final SoftSkillsRepository softSkillsRepository;
 
+    @Override
     public void saveResume(ResumeDTO resumeDTO) {
         Resume resume = resumeDTO.getResume();
         PersonalDetails personalDetails = resumeDTO.getPersonalDetails();
@@ -39,6 +39,33 @@ public class ResumeServiceImpl implements ResumeService {
         saveRelatedEntities(savedResume, resumeDTO.getHardSkills(), hardSkillsRepository);
         saveRelatedEntities(savedResume, resumeDTO.getSoftSkills(), softSkillsRepository);
     }
+
+    @Override
+    public void saveMartinsResume(ResumeDTO resumeDTO) {
+        resumeDTO.getResume().setMartinsCv(true);
+       saveResume(resumeDTO);
+    }
+
+
+    @Override
+    public void deleteResume(Long resumeId) {
+       Resume resume = resumeRepository.findById(resumeId).orElseThrow();
+        PersonalDetails personalDetails = resume.getPersonalDetails();
+        personalDetailsRepository.delete(personalDetails);
+
+        deleteRelatedEntities(resume, resume.getEmployments(), employmentRepository);
+        deleteRelatedEntities(resume, resume.getEducations(), educationRepository);
+        deleteRelatedEntities(resume, resume.getHardSkills(), hardSkillsRepository);
+        deleteRelatedEntities(resume, resume.getSoftSkills(), softSkillsRepository);
+    }
+
+    @Override
+    public void updateRelatedEntities(ResumeDTO resumeDTO, Long id){
+//        todo logic
+
+    }
+
+
     private  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
         if (entities != null){
             log.info("saving::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
@@ -53,6 +80,15 @@ public class ResumeServiceImpl implements ResumeService {
                 }
                 repository.save(entity);
             }
+        }
+    }
+
+
+    private  <T, ID> void deleteRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+        if (entities != null){
+            log.info("deleting::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
+            repository.deleteAll(entities);
+            resumeRepository.delete(resume);
         }
     }
 }
