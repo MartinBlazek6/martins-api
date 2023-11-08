@@ -243,9 +243,9 @@ The Martins Resume API demonstrates my expertise in Spring Boot, RESTful API dev
 ```
 
 
-| Parameter         | Type     | Description                             |
-| :---------------- | :------- | :-------------------------------------- |
-| - (in request body) | JSON  | JSON data containing the following fields. |
+| Parameter         | Type     | Description                                                                                                                |
+| :---------------- | :------- |:---------------------------------------------------------------------------------------------------------------------------|
+| - (in request body) | JSON  | JSON data containing fields from the previous example                                                                      |
 | Authorization (in request header) | String  | **Required**. A token or credentials for authentication. Include it in the request header. You must have the 'Admin' role. |
 
 
