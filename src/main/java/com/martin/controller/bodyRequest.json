@@ -2,12 +2,13 @@
   "resume": {
     "sourceCodeOfThisProject": "https://github.com/MartinBlazek6/martins-api",
     "gdpr": "I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.",
-    "profession": "Back end developer"
+    "profession": "Back end developer",
+    "martinsCv": true
   },
   "personalDetails": {
     "name": "Martin Blazek",
     "email": "martinblazek6@gmail.com",
-    "phoneNumber": "+421 951 013 849",
+    "phoneNumber": "0951013849",
     "location": "Martin (Slovakia)"
   },
   "employments": [
@@ -15,31 +16,31 @@
       "projectName": "CHG healthcarete",
       "duration": "06/2022 - Present",
       "position": "Backend Developer",
-      "technologies": "•Java 17 •PL SQL •JUnit 5 •Spring Boot 2.7 •VSC (GitHub) •SQL •Docker •Kafka •Vue.js"
+      "technologies": "-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js"
     },
     {
       "projectName": "CHG healthcarete",
       "duration": "11/2022 - 06/2023",
       "position": "Software developer in test",
-      "technologies": "•Serenity BDD •Java 17 •JUnit 5 •VSC (GitHub) •SQL •Docker •Kafka •JavaScript"
+      "technologies": "-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript"
     },
     {
       "projectName": "Software Development Academy",
       "duration": "02/2022 - Present",
       "position": "Java Trainer",
-      "technologies": "•Spring Boot 2.7 •Hibernate •Java 17 •REST •Mockito/MockMVC •SQL •CI/CD •Thymeleaf/React/SVELTE"
+      "technologies": "-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE"
     },
     {
       "projectName": "Thermo Fisher scientific",
       "duration": "08/2021 - 11/2022",
       "position": "QA Automation Engineer",
-      "technologies": "•RobotFramework •Python 2.7 •VSC (GitLab) •VMware"
+      "technologies": "-RobotFramework -Python 2.7 -VSC (GitLab) -VMware"
     },
     {
       "projectName": "ComAp",
       "duration": "08/2021 - 11/2022",
       "position": "QA Automation Engineer",
-      "technologies": "•TestComplete •Python 2.7 •VSC (GitLab)"
+      "technologies": "-TestComplete -Python 2.7 -VSC (GitLab)"
     }
   ],
   "educations": [
