@@ -58,6 +58,7 @@ public class ResumeController {
     }
 
 
+    @PreAuthorize("hasRole('Admin')")
     @DeleteMapping("/forRecruiters/deleteById/{resumeId}")
     public ResponseEntity<String> deleteById(@PathVariable Long resumeId) {
         resumeService.deleteResume(resumeId);
