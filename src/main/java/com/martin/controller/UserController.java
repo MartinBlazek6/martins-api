@@ -29,16 +29,4 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
     }
-
-    @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
-        return "This URL is only accessible to the admin";
-    }
-
-    @GetMapping({"/forUser"})
-    @PreAuthorize("hasRole('User')")
-    public String forUser(){
-        return "This URL is only accessible to the user";
-    }
 }
