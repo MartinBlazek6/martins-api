@@ -114,7 +114,7 @@ The Martins Resume API demonstrates my expertise in Spring Boot, RESTful API dev
   "resume": {
     "sourceCodeOfThisProject": "https://github.com/MartinBlazek6/martins-api",
     "gdpr": "I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.",
-    "profession": "Back end developer",
+    "profession": "Back end developer"
   },
   "personalDetails": {
     "name": "Martin Blazek",
