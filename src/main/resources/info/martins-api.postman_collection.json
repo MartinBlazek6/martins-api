@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "480d46f5-86dc-4e93-a0c7-08bfc809e896",
+		"name": "martins-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17292400"
+	},
+	"item": [
+		{
+			"name": "registration",
+			"item": [
+				{
+					"name": "sign in - user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"martin\",\n    \"userFirstName\": \"Martin\",\n    \"userLastName\": \"Blazek\",\n    \"userPassword\": \"userPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/registerNewUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"registerNewUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in - admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{apiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"martin-admin\",\n    \"userFirstName\": \"Martin\",\n    \"userLastName\": \"Blazek\",\n    \"userPassword\": \"userPassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/registerNewUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"registerNewUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "save resume",
+			"item": [
+				{
+					"name": "save resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"resume\": {\n    \"sourceCodeOfThisProject\": \"https://github.com/MartinBlazek6/martins-api\",\n    \"gdpr\": \"I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.\",\n    \"profession\": \"Back end developer\"\n  },\n  \"personalDetails\": {\n    \"name\": \"Martin Blazek\",\n    \"email\": \"martinblazek6@gmail.com\",\n    \"phoneNumber\": \"0951013849\",\n    \"location\": \"Martin (Slovakia)\"\n  },\n  \"employments\": [\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"06/2022 - Present\",\n      \"position\": \"Backend Developer\",\n      \"technologies\": \"-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js\"\n    },\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"11/2022 - 06/2023\",\n      \"position\": \"Software developer in test\",\n      \"technologies\": \"-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript\"\n    },\n    {\n      \"projectName\": \"Software Development Academy\",\n      \"duration\": \"02/2022 - Present\",\n      \"position\": \"Java Trainer\",\n      \"technologies\": \"-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE\"\n    },\n    {\n      \"projectName\": \"Thermo Fisher scientific\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-RobotFramework -Python 2.7 -VSC (GitLab) -VMware\"\n    },\n    {\n      \"projectName\": \"ComAp\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-TestComplete -Python 2.7 -VSC (GitLab)\"\n    }\n  ],\n  \"educations\": [\n    {\n      \"description\": \"Faculty of Applied Informatics\",\n      \"duration\": \"09/2017 - 06/2022\",\n      \"name\": \"Tomas Bata University in Zlín, Zlín\"\n    },\n    {\n      \"description\": \"Focused to Applied Informatics and Biology\",\n      \"duration\": \"09/2007 - 06/2015\",\n      \"name\": \"Mikulas Galanda Gymnasium\"\n    }\n  ],\n  \"hardSkills\": [\n    {\n      \"technology\": \"Java\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Typescript\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"OOP\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Spring Boot\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"REST\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"SQL\",\n      \"level\": \"EXPERT\"\n    },\n    {\n      \"technology\": \"PL SQL\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Docker\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"React\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Vue\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Next\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Hibernate\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"GIT\",\n      \"level\": \"EXPERT\"\n    }\n  ],\n  \"softSkills\": [\n    {\n      \"skill\": \"Can work under pressure\"\n    },\n    {\n      \"skill\": \"Team player\"\n    },\n    {\n      \"skill\": \"Pro active\"\n    }\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/saveResume",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"saveResume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save admins resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJ0aW4iLCJleHAiOjMzOTk5ODk1NzUsImlhdCI6MTY5OTk4NTc4N30.ty78s1GQRQbPibkzpXe2-ewDOJitSUF0O8mRpxtdwZ7Cp4dZwwSlYazotbr3ElrqdoXXEV3iKXVlYCavFshlcg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"resume\": {\n    \"sourceCodeOfThisProject\": \"https://github.com/MartinBlazek6/martins-api\",\n    \"gdpr\": \"I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.\",\n    \"profession\": \"Back end developer\",\n  },\n  \"personalDetails\": {\n    \"name\": \"Martin Blazek\",\n    \"email\": \"martinblazek6@gmail.com\",\n    \"phoneNumber\": \"0951013849\",\n    \"location\": \"Martin (Slovakia)\"\n  },\n  \"employments\": [\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"06/2022 - Present\",\n      \"position\": \"Backend Developer\",\n      \"technologies\": \"-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js\"\n    },\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"11/2022 - 06/2023\",\n      \"position\": \"Software developer in test\",\n      \"technologies\": \"-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript\"\n    },\n    {\n      \"projectName\": \"Software Development Academy\",\n      \"duration\": \"02/2022 - Present\",\n      \"position\": \"Java Trainer\",\n      \"technologies\": \"-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE\"\n    },\n    {\n      \"projectName\": \"Thermo Fisher scientific\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-RobotFramework -Python 2.7 -VSC (GitLab) -VMware\"\n    },\n    {\n      \"projectName\": \"ComAp\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-TestComplete -Python 2.7 -VSC (GitLab)\"\n    }\n  ],\n  \"educations\": [\n    {\n      \"description\": \"Faculty of Applied Informatics\",\n      \"duration\": \"09/2017 - 06/2022\",\n      \"name\": \"Tomas Bata University in Zlín, Zlín\"\n    },\n    {\n      \"description\": \"Focused to Applied Informatics and Biology\",\n      \"duration\": \"09/2007 - 06/2015\",\n      \"name\": \"Mikulas Galanda Gymnasium\"\n    }\n  ],\n  \"hardSkills\": [\n    {\n      \"technology\": \"Java\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Typescript\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"OOP\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Spring Boot\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"REST\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"SQL\",\n      \"level\": \"EXPERT\"\n    },\n    {\n      \"technology\": \"PL SQL\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Docker\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"React\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Vue\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Next\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Hibernate\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"GIT\",\n      \"level\": \"EXPERT\"\n    }\n  ],\n  \"softSkills\": [\n    {\n      \"skill\": \"Can work under pressure\"\n    },\n    {\n      \"skill\": \"Team player\"\n    },\n    {\n      \"skill\": \"Pro active\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/saveMartinsResume",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"saveMartinsResume"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get resume",
+			"item": [
+				{
+					"name": "all-resumes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/allResumes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"allResumes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "martins-resume",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/forRecruiters/martinsResume",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"forRecruiters",
+								"martinsResume"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseBody = pm.response.json();",
+							"var jwtToken = responseBody.jwtToken;",
+							"pm.globals.set(\"jwt_token\", jwtToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"martin-admin\",\n    \"userPassword\": \"userPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete resume",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/forRecruiters//forRecruiters/deleteById/123123123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"forRecruiters",
+						"",
+						"forRecruiters",
+						"deleteById",
+						"123123123"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
