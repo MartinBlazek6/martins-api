@@ -2,7 +2,8 @@
   "resume": {
     "sourceCodeOfThisProject": "https://github.com/MartinBlazek6/martins-api",
     "gdpr": "I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.",
-    "profession": "Back end developer"
+    "profession": "Back end developer",
+    "martinsCv": true
   },
   "personalDetails": {
     "name": "Martin Blazek",
