@@ -81,9 +81,26 @@ public class ResumeServiceImpl implements ResumeService {
     public void updateRelatedEntities(ResumeDTO resumeDTO, Long id) {
         Resume resume = resumeRepository.findById(id).orElseThrow();
 
-        softSkillsRepository.deleteAll(softSkillsRepository.findAllByResume(resume));
+        if (resumeDTO.getEmployments()!=null){
+            employmentRepository.deleteAll(employmentRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getEmployments(), employmentRepository);
+        }
 
-        saveRelatedEntities(resume, resumeDTO.getSoftSkills(), softSkillsRepository);
+        if (resumeDTO.getEducations()!=null){
+            educationRepository.deleteAll(educationRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getEducations(), educationRepository);
+        }
+
+        if (resumeDTO.getHardSkills()!=null){
+            hardSkillsRepository.deleteAll(hardSkillsRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getHardSkills(), hardSkillsRepository);
+        }
+
+        if (resumeDTO.getSoftSkills()!=null){
+            softSkillsRepository.deleteAll(softSkillsRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getSoftSkills(), softSkillsRepository);
+        }
+
     }
 
     /**
