@@ -73,10 +73,14 @@ public class ResumeController {
 
 
     @PreAuthorize("hasRole('Admin')")
-    @DeleteMapping("/forRecruiters/deleteById/{resumeId}")
+    @DeleteMapping("/deleteById/{resumeId}")
     public ResponseEntity<String> deleteById(@PathVariable Long resumeId) {
-        resumeService.deleteResume(resumeId);
-        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+        try {
+            resumeService.deleteResume(resumeId);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Document not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Deleted", HttpStatus.NO_CONTENT);
     }
 
     @PreAuthorize("hasRole('User')")
