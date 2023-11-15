@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -55,7 +56,7 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public void saveMartinsResume(ResumeDTO resumeDTO) {
         resumeDTO.getResume().setMartinsCv(true);
-       saveResume(resumeDTO);
+        saveResume(resumeDTO);
     }
 
     /**
@@ -66,7 +67,7 @@ public class ResumeServiceImpl implements ResumeService {
      */
     @Override
     public void deleteResume(Long resumeId) {
-       Resume resume = resumeRepository.findById(resumeId).orElseThrow();
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow();
         PersonalDetails personalDetails = resume.getPersonalDetails();
         personalDetailsRepository.delete(personalDetails);
 
@@ -77,22 +78,25 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public void updateRelatedEntities(ResumeDTO resumeDTO, Long id){
-//        todo logic
+    public void updateRelatedEntities(ResumeDTO resumeDTO, Long id) {
+        Resume resume = resumeRepository.findById(id).orElseThrow();
 
+        softSkillsRepository.deleteAll(softSkillsRepository.findAllByResume(resume));
+
+        saveRelatedEntities(resume, resumeDTO.getSoftSkills(), softSkillsRepository);
     }
 
     /**
      * Save a list of related entities associated with a resume.
      *
-     * @param resume    The resume to which the entities are related.
-     * @param entities  The list of entities to be saved.
+     * @param resume     The resume to which the entities are related.
+     * @param entities   The list of entities to be saved.
      * @param repository The repository for the type of entities being saved.
-     * @param <T>       The type of entities.
-     * @param <ID>      The type of entity ID.
+     * @param <T>        The type of entities.
+     * @param <ID>       The type of entity ID.
      */
-    private  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
-        if (entities != null){
+    private <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+        if (entities != null) {
             log.info("saving::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
             for (T entity : entities) {
                 switch (entity.getClass().getSimpleName()) {
@@ -111,14 +115,14 @@ public class ResumeServiceImpl implements ResumeService {
     /**
      * Delete a list of related entities associated with a resume.
      *
-     * @param resume    The resume from which the entities are related.
-     * @param entities  The list of entities to be deleted.
+     * @param resume     The resume from which the entities are related.
+     * @param entities   The list of entities to be deleted.
      * @param repository The repository for the type of entities being deleted.
-     * @param <T>       The type of entities.
-     * @param <ID>      The type of entity ID.
+     * @param <T>        The type of entities.
+     * @param <ID>       The type of entity ID.
      */
-    private  <T, ID> void deleteRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
-        if (entities != null){
+    private <T, ID> void deleteRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+        if (entities != null) {
             log.info("deleting::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
             repository.deleteAll(entities);
             resumeRepository.delete(resume);
