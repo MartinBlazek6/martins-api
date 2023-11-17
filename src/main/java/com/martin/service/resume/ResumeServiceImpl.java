@@ -81,22 +81,39 @@ public class ResumeServiceImpl implements ResumeService {
     public void updateRelatedEntities(ResumeDTO resumeDTO, Long id) {
         Resume resume = resumeRepository.findById(id).orElseThrow();
 
-        if (resumeDTO.getEmployments()!=null){
+        if (resumeDTO.getResume() != null) {
+            resumeRepository.delete(resume);
+            Resume updatedResume = resumeDTO.getResume();
+            updatedResume.setId(resume.getId());
+            resumeRepository.save(updatedResume);
+        }
+
+        if (resumeDTO.getPersonalDetails() != null) {
+            PersonalDetails personalDetails = resume.getPersonalDetails();
+
+            personalDetails.setName(resumeDTO.getPersonalDetails().getName());
+
+
+            personalDetailsRepository.save(personalDetails);
+        }
+
+
+        if (resumeDTO.getEmployments() != null) {
             employmentRepository.deleteAll(employmentRepository.findAllByResume(resume));
             saveRelatedEntities(resume, resumeDTO.getEmployments(), employmentRepository);
         }
 
-        if (resumeDTO.getEducations()!=null){
+        if (resumeDTO.getEducations() != null) {
             educationRepository.deleteAll(educationRepository.findAllByResume(resume));
             saveRelatedEntities(resume, resumeDTO.getEducations(), educationRepository);
         }
 
-        if (resumeDTO.getHardSkills()!=null){
+        if (resumeDTO.getHardSkills() != null) {
             hardSkillsRepository.deleteAll(hardSkillsRepository.findAllByResume(resume));
             saveRelatedEntities(resume, resumeDTO.getHardSkills(), hardSkillsRepository);
         }
 
-        if (resumeDTO.getSoftSkills()!=null){
+        if (resumeDTO.getSoftSkills() != null) {
             softSkillsRepository.deleteAll(softSkillsRepository.findAllByResume(resume));
             saveRelatedEntities(resume, resumeDTO.getSoftSkills(), softSkillsRepository);
         }
