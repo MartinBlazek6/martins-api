@@ -95,6 +95,15 @@ public class ResumeServiceImpl implements ResumeService {
             personalDetails.setName(updatedPersonalDetails.getName() !=null
                     ?resumeDTO.getPersonalDetails().getName() : personalDetails.getName());
 
+            personalDetails.setEmail(updatedPersonalDetails.getEmail() !=null
+                    ?resumeDTO.getPersonalDetails().getEmail() : personalDetails.getEmail());
+
+            personalDetails.setLocation(updatedPersonalDetails.getLocation() !=null
+                    ?resumeDTO.getPersonalDetails().getLocation() : personalDetails.getLocation());
+
+            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() !=null
+                    ?resumeDTO.getPersonalDetails().getPhoneNumber() : personalDetails.getPhoneNumber());
+
 
             personalDetailsRepository.save(personalDetails);
         }
