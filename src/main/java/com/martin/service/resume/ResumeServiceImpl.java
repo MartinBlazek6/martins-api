@@ -76,27 +76,36 @@ public class ResumeServiceImpl implements ResumeService {
         deleteRelatedEntities(resume, resume.getSoftSkills(), softSkillsRepository);
     }
 
+    /**
+     * Update various related entities associated with a resume based on the information provided in a ResumeDTO.
+     *
+     * @param resumeDTO The ResumeDTO containing the updated information for different entities.
+     * @param id        The identifier of the Resume entity to be updated.
+     */
     @Override
     public void updateRelatedEntities(ResumeDTO resumeDTO, Long id) {
         Resume resume = resumeRepository.findById(id).orElseThrow();
-
-        if (resumeDTO.getResume() != null) {
-            resumeRepository.delete(resume);
-            Resume updatedResume = resumeDTO.getResume();
-            updatedResume.setId(resume.getId());
-            resumeRepository.save(updatedResume);
-        }
 
         if (resumeDTO.getPersonalDetails() != null) {
             PersonalDetails personalDetails = resume.getPersonalDetails();
             PersonalDetails updatedPersonalDetails = resumeDTO.getPersonalDetails();
 
-            personalDetails.setName(updatedPersonalDetails.getName() != null ? resumeDTO.getPersonalDetails().getName() : personalDetails.getName());
-            personalDetails.setEmail(updatedPersonalDetails.getEmail() != null ? resumeDTO.getPersonalDetails().getEmail() : personalDetails.getEmail());
-            personalDetails.setLocation(updatedPersonalDetails.getLocation() != null ? resumeDTO.getPersonalDetails().getLocation() : personalDetails.getLocation());
-            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() != null ? resumeDTO.getPersonalDetails().getPhoneNumber() : personalDetails.getPhoneNumber());
+            personalDetails.setName(updatedPersonalDetails.getName() != null ? updatedPersonalDetails.getName() : personalDetails.getName());
+            personalDetails.setEmail(updatedPersonalDetails.getEmail() != null ? updatedPersonalDetails.getEmail() : personalDetails.getEmail());
+            personalDetails.setLocation(updatedPersonalDetails.getLocation() != null ? updatedPersonalDetails.getLocation() : personalDetails.getLocation());
+            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() != null ? updatedPersonalDetails.getPhoneNumber() : personalDetails.getPhoneNumber());
 
             personalDetailsRepository.save(personalDetails);
+        }
+        if (resumeDTO.getResume() != null) {
+            Resume updatedResume = resumeDTO.getResume();
+
+
+            resume.setProfession(updatedResume.getProfession() != null ? updatedResume.getProfession() : resume.getProfession());
+            resume.setSourceCodeOfThisProject(updatedResume.getSourceCodeOfThisProject() != null ? updatedResume.getSourceCodeOfThisProject() : resume.getSourceCodeOfThisProject());
+            resume.setGDPR(updatedResume.getGDPR() != null ? updatedResume.getGDPR() : resume.getGDPR());
+
+            resumeRepository.save(resume);
         }
 
 
