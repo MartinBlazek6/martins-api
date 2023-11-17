@@ -90,8 +90,10 @@ public class ResumeServiceImpl implements ResumeService {
 
         if (resumeDTO.getPersonalDetails() != null) {
             PersonalDetails personalDetails = resume.getPersonalDetails();
+            PersonalDetails updatedPersonalDetails = resumeDTO.getPersonalDetails();
 
-            personalDetails.setName(resumeDTO.getPersonalDetails().getName());
+            personalDetails.setName(updatedPersonalDetails.getName() !=null
+                    ?resumeDTO.getPersonalDetails().getName() : personalDetails.getName());
 
 
             personalDetailsRepository.save(personalDetails);
