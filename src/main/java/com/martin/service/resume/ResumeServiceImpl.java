@@ -1,14 +1,13 @@
 package com.martin.service.resume;
 
 import com.martin.entity.candidate.*;
-import com.martin.entity.records.ResumeDTO;
+import com.martin.entity.dataTransferObjects.ResumeDTO;
 import com.martin.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -92,18 +91,10 @@ public class ResumeServiceImpl implements ResumeService {
             PersonalDetails personalDetails = resume.getPersonalDetails();
             PersonalDetails updatedPersonalDetails = resumeDTO.getPersonalDetails();
 
-            personalDetails.setName(updatedPersonalDetails.getName() !=null
-                    ?resumeDTO.getPersonalDetails().getName() : personalDetails.getName());
-
-            personalDetails.setEmail(updatedPersonalDetails.getEmail() !=null
-                    ?resumeDTO.getPersonalDetails().getEmail() : personalDetails.getEmail());
-
-            personalDetails.setLocation(updatedPersonalDetails.getLocation() !=null
-                    ?resumeDTO.getPersonalDetails().getLocation() : personalDetails.getLocation());
-
-            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() !=null
-                    ?resumeDTO.getPersonalDetails().getPhoneNumber() : personalDetails.getPhoneNumber());
-
+            personalDetails.setName(updatedPersonalDetails.getName() != null ? resumeDTO.getPersonalDetails().getName() : personalDetails.getName());
+            personalDetails.setEmail(updatedPersonalDetails.getEmail() != null ? resumeDTO.getPersonalDetails().getEmail() : personalDetails.getEmail());
+            personalDetails.setLocation(updatedPersonalDetails.getLocation() != null ? resumeDTO.getPersonalDetails().getLocation() : personalDetails.getLocation());
+            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() != null ? resumeDTO.getPersonalDetails().getPhoneNumber() : personalDetails.getPhoneNumber());
 
             personalDetailsRepository.save(personalDetails);
         }

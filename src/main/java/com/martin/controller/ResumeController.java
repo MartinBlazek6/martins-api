@@ -1,7 +1,7 @@
 package com.martin.controller;
 
 import com.martin.entity.candidate.Resume;
-import com.martin.entity.records.ResumeDTO;
+import com.martin.entity.dataTransferObjects.ResumeDTO;
 import com.martin.repositories.ResumeRepository;
 import com.martin.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
