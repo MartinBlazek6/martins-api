@@ -10,8 +10,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -116,11 +118,56 @@ public class ResumeServiceImplTest {
         assertTrue(resumeDTO.getResume().isMartinsCv());
     }
 
+    @Test
+    public void testUpdateRelatedEntities() {
+        Long resumeId = 1L;
+        Resume resume = new Resume();
+        PersonalDetails personalDetails = PersonalDetails.builder().email("example@gmail.com").build();
+        Employment employment = new Employment();
+        Employment employment2 = new Employment();
+        Education education = new Education();
+        HardSkills hardSkills = new HardSkills();
+        SoftSkills softSkills = new SoftSkills();
+
+        resume.setPersonalDetails(personalDetails);
+        resume.setEmployments(List.of(employment,employment2));
+        resume.setEducations(Collections.singletonList(education));
+        resume.setHardSkills(Collections.singletonList(hardSkills));
+        resume.setSoftSkills(Collections.singletonList(softSkills));
+        resume.setId(resumeId);
+
+        ResumeDTO resumeDTO = createMockResumeDTO();
+
+        when(resumeRepository.findById(resumeId)).thenReturn(Optional.of(resume));
+        when(personalDetailsRepository.save(any())).thenReturn(new PersonalDetails());
+        when(employmentRepository.findAllByResume(any())).thenReturn(Collections.emptyList());
+        when(educationRepository.findAllByResume(any())).thenReturn(Collections.emptyList());
+        when(hardSkillsRepository.findAllByResume(any())).thenReturn(Collections.emptyList());
+        when(softSkillsRepository.findAllByResume(any())).thenReturn(Collections.emptyList());
+
+        resumeService.updateRelatedEntities(resumeDTO, 1L);
+
+        verify(personalDetailsRepository, times(1)).save(any());
+        verify(resumeRepository, times(1)).save(any());
+        verify(employmentRepository, times(1)).deleteAll(any());
+        verify(educationRepository, times(1)).deleteAll(any());
+        verify(hardSkillsRepository, times(1)).deleteAll(any());
+        verify(softSkillsRepository, times(1)).deleteAll(any());
+
+
+       assertThat(resumeRepository.findById(resumeId).orElseThrow().getPersonalDetails().getEmail())
+               .isEqualTo(createMockResumeDTO().getPersonalDetails().getEmail());
+
+
+        assertThat(resumeRepository.findById(resumeId).orElseThrow().getEmployments())
+                .isEqualTo(resume.getEmployments());
+    }
+
 
     private ResumeDTO createMockResumeDTO() {
         ResumeDTO resumeDTO = new ResumeDTO();
         Resume resume = new Resume();
-        PersonalDetails personalDetails = new PersonalDetails();
+        PersonalDetails personalDetails = PersonalDetails.builder().email("example2@gmail.com").build();
         Employment employment = new Employment();
         Education education = new Education();
         HardSkills hardSkills = new HardSkills();
