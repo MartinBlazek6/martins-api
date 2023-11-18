@@ -1,4 +1,4 @@
-package com.martin.entity.records;
+package com.martin.entity.dataTransferObjects;
 
 import com.martin.entity.candidate.*;
 import lombok.AllArgsConstructor;

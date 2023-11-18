@@ -1,7 +1,7 @@
 package com.martin.service.resume;
 
 import com.martin.entity.candidate.*;
-import com.martin.entity.records.ResumeDTO;
+import com.martin.entity.dataTransferObjects.ResumeDTO;
 import com.martin.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +22,13 @@ public class ResumeServiceImpl implements ResumeService {
     private final HardSkillsRepository hardSkillsRepository;
     private final SoftSkillsRepository softSkillsRepository;
 
+
+    /**
+     * Save a new resume and its associated details, including personal information, employments, educations,
+     * hard skills, and soft skills.
+     *
+     * @param resumeDTO The DTO containing the resume and associated details.
+     */
     @Override
     public void saveResume(ResumeDTO resumeDTO) {
         Resume resume = resumeDTO.getResume();
@@ -40,16 +47,26 @@ public class ResumeServiceImpl implements ResumeService {
         saveRelatedEntities(savedResume, resumeDTO.getSoftSkills(), softSkillsRepository);
     }
 
+    /**
+     * Save Martin's resume by marking it as such and then invoking the general saveResume method.
+     *
+     * @param resumeDTO The DTO containing Martin's resume and associated details.
+     */
     @Override
     public void saveMartinsResume(ResumeDTO resumeDTO) {
         resumeDTO.getResume().setMartinsCv(true);
-       saveResume(resumeDTO);
+        saveResume(resumeDTO);
     }
 
-
+    /**
+     * Delete a resume and its associated details, including personal information, employments, educations,
+     * hard skills, and soft skills.
+     *
+     * @param resumeId The ID of the resume to be deleted.
+     */
     @Override
     public void deleteResume(Long resumeId) {
-       Resume resume = resumeRepository.findById(resumeId).orElseThrow();
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow();
         PersonalDetails personalDetails = resume.getPersonalDetails();
         personalDetailsRepository.delete(personalDetails);
 
@@ -59,15 +76,72 @@ public class ResumeServiceImpl implements ResumeService {
         deleteRelatedEntities(resume, resume.getSoftSkills(), softSkillsRepository);
     }
 
+    /**
+     * Update various related entities associated with a resume based on the information provided in a ResumeDTO.
+     *
+     * @param resumeDTO The ResumeDTO containing the updated information for different entities.
+     * @param id        The identifier of the Resume entity to be updated.
+     */
     @Override
-    public void updateRelatedEntities(ResumeDTO resumeDTO, Long id){
-//        todo logic
+    public void updateRelatedEntities(ResumeDTO resumeDTO, Long id) {
+        Resume resume = resumeRepository.findById(id).orElseThrow();
+
+        if (resumeDTO.getPersonalDetails() != null) {
+            PersonalDetails personalDetails = resume.getPersonalDetails();
+            PersonalDetails updatedPersonalDetails = resumeDTO.getPersonalDetails();
+
+            personalDetails.setName(updatedPersonalDetails.getName() != null ? updatedPersonalDetails.getName() : personalDetails.getName());
+            personalDetails.setEmail(updatedPersonalDetails.getEmail() != null ? updatedPersonalDetails.getEmail() : personalDetails.getEmail());
+            personalDetails.setLocation(updatedPersonalDetails.getLocation() != null ? updatedPersonalDetails.getLocation() : personalDetails.getLocation());
+            personalDetails.setPhoneNumber(updatedPersonalDetails.getPhoneNumber() != null ? updatedPersonalDetails.getPhoneNumber() : personalDetails.getPhoneNumber());
+
+            personalDetailsRepository.save(personalDetails);
+        }
+        if (resumeDTO.getResume() != null) {
+            Resume updatedResume = resumeDTO.getResume();
+
+
+            resume.setProfession(updatedResume.getProfession() != null ? updatedResume.getProfession() : resume.getProfession());
+            resume.setSourceCodeOfThisProject(updatedResume.getSourceCodeOfThisProject() != null ? updatedResume.getSourceCodeOfThisProject() : resume.getSourceCodeOfThisProject());
+            resume.setGDPR(updatedResume.getGDPR() != null ? updatedResume.getGDPR() : resume.getGDPR());
+
+            resumeRepository.save(resume);
+        }
+
+
+        if (resumeDTO.getEmployments() != null) {
+            employmentRepository.deleteAll(employmentRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getEmployments(), employmentRepository);
+        }
+
+        if (resumeDTO.getEducations() != null) {
+            educationRepository.deleteAll(educationRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getEducations(), educationRepository);
+        }
+
+        if (resumeDTO.getHardSkills() != null) {
+            hardSkillsRepository.deleteAll(hardSkillsRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getHardSkills(), hardSkillsRepository);
+        }
+
+        if (resumeDTO.getSoftSkills() != null) {
+            softSkillsRepository.deleteAll(softSkillsRepository.findAllByResume(resume));
+            saveRelatedEntities(resume, resumeDTO.getSoftSkills(), softSkillsRepository);
+        }
 
     }
 
-
-    private  <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
-        if (entities != null){
+    /**
+     * Save a list of related entities associated with a resume.
+     *
+     * @param resume     The resume to which the entities are related.
+     * @param entities   The list of entities to be saved.
+     * @param repository The repository for the type of entities being saved.
+     * @param <T>        The type of entities.
+     * @param <ID>       The type of entity ID.
+     */
+    private <T, ID> void saveRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+        if (entities != null) {
             log.info("saving::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
             for (T entity : entities) {
                 switch (entity.getClass().getSimpleName()) {
@@ -83,9 +157,17 @@ public class ResumeServiceImpl implements ResumeService {
         }
     }
 
-
-    private  <T, ID> void deleteRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
-        if (entities != null){
+    /**
+     * Delete a list of related entities associated with a resume.
+     *
+     * @param resume     The resume from which the entities are related.
+     * @param entities   The list of entities to be deleted.
+     * @param repository The repository for the type of entities being deleted.
+     * @param <T>        The type of entities.
+     * @param <ID>       The type of entity ID.
+     */
+    private <T, ID> void deleteRelatedEntities(Resume resume, List<T> entities, JpaRepository<T, ID> repository) {
+        if (entities != null) {
             log.info("deleting::" + entities.stream().findFirst().orElseThrow().getClass().getSimpleName());
             repository.deleteAll(entities);
             resumeRepository.delete(resume);

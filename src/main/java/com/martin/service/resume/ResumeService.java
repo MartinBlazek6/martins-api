@@ -1,11 +1,7 @@
 package com.martin.service.resume;
 
-import com.martin.entity.candidate.Resume;
-import com.martin.entity.records.ResumeDTO;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.martin.entity.dataTransferObjects.ResumeDTO;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface ResumeService {

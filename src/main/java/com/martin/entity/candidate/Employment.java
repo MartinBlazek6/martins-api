@@ -28,13 +28,4 @@ public class Employment {
     @JoinColumn(name = "resume_id")
     @JsonBackReference
     private Resume resume;
-
-
-    @Override
-    public String toString() {
-        return "Astronaut{" +
-                "name='" + projectName + '\'' +
-                ", lastName='" + technologies + '\'' +
-                '}';
-    }
 }

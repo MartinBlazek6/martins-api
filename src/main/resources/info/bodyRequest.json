@@ -1,123 +1,314 @@
 {
-  "resume": {
-    "sourceCodeOfThisProject": "https://github.com/MartinBlazek6/martins-api",
-    "gdpr": "I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.",
-    "profession": "Back end developer",
-    "martinsCv": true
+  "info": {
+    "_postman_id": "480d46f5-86dc-4e93-a0c7-08bfc809e896",
+    "name": "martins-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17292400"
   },
-  "personalDetails": {
-    "name": "Martin Blazek",
-    "email": "martinblazek6@gmail.com",
-    "phoneNumber": "0951013849",
-    "location": "Martin (Slovakia)"
-  },
-  "employments": [
+  "item": [
     {
-      "projectName": "CHG healthcarete",
-      "duration": "06/2022 - Present",
-      "position": "Backend Developer",
-      "technologies": "-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js"
+      "name": "registration",
+      "item": [
+        {
+          "name": "sign in - user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userName\": \"martin\",\n    \"userFirstName\": \"Martin\",\n    \"userLastName\": \"Blazek\",\n    \"userPassword\": \"userPassword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/registerNewUser",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "registerNewUser"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "sign in - admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apiKey",
+                "value": "{{apiKey}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userName\": \"martin-admin\",\n    \"userFirstName\": \"Martin\",\n    \"userLastName\": \"Blazek\",\n    \"userPassword\": \"userPassword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/registerNewUser",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "registerNewUser"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
-      "projectName": "CHG healthcarete",
-      "duration": "11/2022 - 06/2023",
-      "position": "Software developer in test",
-      "technologies": "-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript"
+      "name": "save resume",
+      "item": [
+        {
+          "name": "save resume",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resume\": {\n    \"sourceCodeOfThisProject\": \"https://github.com/MartinBlazek6/martins-api\",\n    \"gdpr\": \"I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.\",\n    \"profession\": \"Back end developer\"\n  },\n  \"personalDetails\": {\n    \"name\": \"Martin Blazek\",\n    \"email\": \"martinblazek6@gmail.com\",\n    \"phoneNumber\": \"0951013849\",\n    \"location\": \"Martin (Slovakia)\"\n  },\n  \"employments\": [\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"06/2022 - Present\",\n      \"position\": \"Backend Developer\",\n      \"technologies\": \"-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js\"\n    },\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"11/2022 - 06/2023\",\n      \"position\": \"Software developer in test\",\n      \"technologies\": \"-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript\"\n    },\n    {\n      \"projectName\": \"Software Development Academy\",\n      \"duration\": \"02/2022 - Present\",\n      \"position\": \"Java Trainer\",\n      \"technologies\": \"-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE\"\n    },\n    {\n      \"projectName\": \"Thermo Fisher scientific\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-RobotFramework -Python 2.7 -VSC (GitLab) -VMware\"\n    },\n    {\n      \"projectName\": \"ComAp\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-TestComplete -Python 2.7 -VSC (GitLab)\"\n    }\n  ],\n  \"educations\": [\n    {\n      \"description\": \"Faculty of Applied Informatics\",\n      \"duration\": \"09/2017 - 06/2022\",\n      \"name\": \"Tomas Bata University in Zlín, Zlín\"\n    },\n    {\n      \"description\": \"Focused to Applied Informatics and Biology\",\n      \"duration\": \"09/2007 - 06/2015\",\n      \"name\": \"Mikulas Galanda Gymnasium\"\n    }\n  ],\n  \"hardSkills\": [\n    {\n      \"technology\": \"Java\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Typescript\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"OOP\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Spring Boot\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"REST\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"SQL\",\n      \"level\": \"EXPERT\"\n    },\n    {\n      \"technology\": \"PL SQL\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Docker\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"React\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Vue\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Next\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Hibernate\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"GIT\",\n      \"level\": \"EXPERT\"\n    }\n  ],\n  \"softSkills\": [\n    {\n      \"skill\": \"Can work under pressure\"\n    },\n    {\n      \"skill\": \"Team player\"\n    },\n    {\n      \"skill\": \"Pro active\"\n    }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/saveResume",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "saveResume"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "save admins resume",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resume\": {\n    \"sourceCodeOfThisProject\": \"https://github.com/MartinBlazek6/martins-api\",\n    \"gdpr\": \"I consent to the processing of my personal data for the purpose of recruitment for the position to which I am applying.\",\n    \"profession\": \"Back end developer\"\n  },\n  \"personalDetails\": {\n    \"name\": \"Martin Blazek\",\n    \"email\": \"martinblazek6@gmail.com\",\n    \"phoneNumber\": \"0951013849\",\n    \"location\": \"Martin (Slovakia)\"\n  },\n  \"employments\": [\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"06/2022 - Present\",\n      \"position\": \"Backend Developer\",\n      \"technologies\": \"-Java 17 -PL SQL -JUnit 5 -Spring Boot 2.7 -VSC (GitHub) -SQL -Docker -Kafka -Vue.js\"\n    },\n    {\n      \"projectName\": \"CHG healthcarete\",\n      \"duration\": \"11/2022 - 06/2023\",\n      \"position\": \"Software developer in test\",\n      \"technologies\": \"-Serenity BDD -Java 17 -JUnit 5 -VSC (GitHub) -SQL -Docker -Kafka -JavaScript\"\n    },\n    {\n      \"projectName\": \"Software Development Academy\",\n      \"duration\": \"02/2022 - Present\",\n      \"position\": \"Java Trainer\",\n      \"technologies\": \"-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE\"\n    },\n    {\n      \"projectName\": \"Thermo Fisher scientific\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-RobotFramework -Python 2.7 -VSC (GitLab) -VMware\"\n    },\n    {\n      \"projectName\": \"ComAp\",\n      \"duration\": \"08/2021 - 11/2022\",\n      \"position\": \"QA Automation Engineer\",\n      \"technologies\": \"-TestComplete -Python 2.7 -VSC (GitLab)\"\n    }\n  ],\n  \"educations\": [\n    {\n      \"description\": \"Faculty of Applied Informatics\",\n      \"duration\": \"09/2017 - 06/2022\",\n      \"name\": \"Tomas Bata University in ZlÃ­n, ZlÃ­n\"\n    },\n    {\n      \"description\": \"Focused to Applied Informatics and Biology\",\n      \"duration\": \"09/2007 - 06/2015\",\n      \"name\": \"Mikulas Galanda Gymnasium\"\n    }\n  ],\n  \"hardSkills\": [\n    {\n      \"technology\": \"Java\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Typescript\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"OOP\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Spring Boot\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"REST\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"SQL\",\n      \"level\": \"EXPERT\"\n    },\n    {\n      \"technology\": \"PL SQL\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Docker\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"React\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Vue\",\n      \"level\": \"INTERMEDIATE\"\n    },\n    {\n      \"technology\": \"Next\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"Hibernate\",\n      \"level\": \"ADVANCED\"\n    },\n    {\n      \"technology\": \"GIT\",\n      \"level\": \"EXPERT\"\n    }\n  ],\n  \"softSkills\": [\n    {\n      \"skill\": \"Can work under pressure\"\n    },\n    {\n      \"skill\": \"Team player\"\n    },\n    {\n      \"skill\": \"Pro active\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/saveMartinsResume",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "saveMartinsResume"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
-      "projectName": "Software Development Academy",
-      "duration": "02/2022 - Present",
-      "position": "Java Trainer",
-      "technologies": "-Spring Boot 2.7 -Hibernate -Java 17 -REST -Mockito/MockMVC -SQL -CI/CD -Thymeleaf/React/SVELTE"
+      "name": "get resume",
+      "item": [
+        {
+          "name": "all-resumes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/allResumes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "allResumes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "martins-resume",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/forRecruiters/martinsResume",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "forRecruiters",
+                "martinsResume"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
-      "projectName": "Thermo Fisher scientific",
-      "duration": "08/2021 - 11/2022",
-      "position": "QA Automation Engineer",
-      "technologies": "-RobotFramework -Python 2.7 -VSC (GitLab) -VMware"
+      "name": "authenticate",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responseBody = pm.response.json();",
+              "var jwtToken = responseBody.jwtToken;",
+              "pm.globals.set(\"jwt_token\", jwtToken);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userName\": \"martin-admins\",\n    \"userPassword\": \"userPassword\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/authenticate",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "authenticate"
+          ]
+        }
+      },
+      "response": []
     },
     {
-      "projectName": "ComAp",
-      "duration": "08/2021 - 11/2022",
-      "position": "QA Automation Engineer",
-      "technologies": "-TestComplete -Python 2.7 -VSC (GitLab)"
-    }
-  ],
-  "educations": [
-    {
-      "description": "Faculty of Applied Informatics",
-      "duration": "09/2017 - 06/2022",
-      "name": "Tomas Bata University in Zlín, Zlín"
+      "name": "delete resume",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/forRecruiters//forRecruiters/deleteById/123123123",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "forRecruiters",
+            "",
+            "forRecruiters",
+            "deleteById",
+            "123123123"
+          ]
+        }
+      },
+      "response": []
     },
     {
-      "description": "Focused to Applied Informatics and Biology",
-      "duration": "09/2007 - 06/2015",
-      "name": "Mikulas Galanda Gymnasium"
-    }
-  ],
-  "hardSkills": [
-    {
-      "technology": "Java",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "Typescript",
-      "level": "INTERMEDIATE"
-    },
-    {
-      "technology": "OOP",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "Spring Boot",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "REST",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "SQL",
-      "level": "EXPERT"
-    },
-    {
-      "technology": "PL SQL",
-      "level": "INTERMEDIATE"
-    },
-    {
-      "technology": "Docker",
-      "level": "INTERMEDIATE"
-    },
-    {
-      "technology": "React",
-      "level": "INTERMEDIATE"
-    },
-    {
-      "technology": "Vue",
-      "level": "INTERMEDIATE"
-    },
-    {
-      "technology": "Next",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "Hibernate",
-      "level": "ADVANCED"
-    },
-    {
-      "technology": "GIT",
-      "level": "EXPERT"
-    }
-  ],
-  "softSkills": [
-    {
-      "skill": "Can work under pressure"
-    },
-    {
-      "skill": "Team player"
-    },
-    {
-      "skill": "Pro active"
+      "name": "update resume",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"personalDetails\": {\n        \"name\": \"Martin Blazek\",\n        \"email\": \"martinblazek6@gmail.com\",\n        \"phoneNumber\": \"0951013849\",\n        \"location\": \"New York (USA)\"\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/updateResume?resumeId=1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "updateResume"
+          ],
+          "query": [
+            {
+              "key": "resumeId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

@@ -29,6 +29,14 @@ public class UserService {
         return user.isEmpty();
     }
 
+    /**
+     * Register a new user in the system.
+     *
+     * @param user     The user to be registered.
+     * @param isAdmin  A boolean indicating whether the user should have admin privileges.
+     * @return The registered user.
+     * @throws UserAlreadyExistException If a user with the same username already exists.
+     */
     public User registerNewUser(User user,boolean isAdmin) {
         if (isUserUnique(user.getUserName())){
             Role role = isAdmin ? roleRepository.findById("Admin").orElseThrow(()-> new RuntimeException("role Admin not found"))

@@ -1,7 +1,7 @@
 package com.martin.controller;
 
 import com.martin.entity.candidate.Resume;
-import com.martin.entity.records.ResumeDTO;
+import com.martin.entity.dataTransferObjects.ResumeDTO;
 import com.martin.repositories.ResumeRepository;
 import com.martin.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
@@ -73,10 +73,14 @@ public class ResumeController {
 
 
     @PreAuthorize("hasRole('Admin')")
-    @DeleteMapping("/forRecruiters/deleteById/{resumeId}")
+    @DeleteMapping("/deleteById/{resumeId}")
     public ResponseEntity<String> deleteById(@PathVariable Long resumeId) {
-        resumeService.deleteResume(resumeId);
-        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+        try {
+            resumeService.deleteResume(resumeId);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>("Document not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>("Deleted", HttpStatus.NO_CONTENT);
     }
 
     @PreAuthorize("hasRole('User')")
