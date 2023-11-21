@@ -1,6 +1,7 @@
 package com.martin.service;
 
 import com.martin.exceptions.UserAlreadyExistException;
+import com.martin.exceptions.UserNotFoundException;
 import com.martin.repositories.RoleRepository;
 import com.martin.repositories.UserRepository;
 import com.martin.entity.Role;
@@ -49,6 +50,23 @@ public class UserService {
             return userRepository.save(user);
         }
         throw new UserAlreadyExistException(user.getUserName() + ": already exist");
+    }
+
+    /**
+     * Change users password in the system.
+     *
+     * @param userName     The user to update with new password.
+     * @param newPassword  New password for the user.
+     */
+    public void changeUserPassword(String userName, String newPassword){
+        if (userRepository.findByUserName(userName).isPresent()){
+            User user = userRepository.findByUserName(userName).get();
+            user.setUserPassword(getEncodedPassword(newPassword));
+            userRepository.save(user);
+        }else {
+            throw new UserNotFoundException("User with this name not found: " + userName);
+        }
+
     }
 
     public String getEncodedPassword(String password) {

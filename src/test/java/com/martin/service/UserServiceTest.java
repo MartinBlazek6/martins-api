@@ -3,13 +3,13 @@ package com.martin.service;
 import com.martin.entity.Role;
 import com.martin.entity.User;
 import com.martin.exceptions.UserAlreadyExistException;
+import com.martin.exceptions.UserNotFoundException;
 import com.martin.repositories.RoleRepository;
 import com.martin.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,9 +17,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -52,7 +52,7 @@ public class UserServiceTest {
 
         User registeredUser = userService.registerNewUser(user,false);
 
-        Mockito.verify(userRepository).save(user);
+        verify(userRepository).save(user);
         assertThat(registeredUser.getRole()).isEqualTo(Set.of(role));
         assertThat(registeredUser.getUserPassword()).isEqualTo("encodedPassword");
     }
@@ -66,6 +66,39 @@ public class UserServiceTest {
         when(userRepository.findByUserName("existingUser")).thenReturn(Optional.of(user));
 
         assertThrows(UserAlreadyExistException.class, () -> userService.registerNewUser(user,false));
+    }
+
+    @Test
+    public void testChangeUserPassword_UserNotFound() {
+        String nonExistingUserName = "nonExistingUser";
+        String newPassword = "newPassword";
+
+        when(userRepository.findByUserName(nonExistingUserName)).thenReturn(java.util.Optional.empty());
+
+        assertThrows(UserNotFoundException.class, () -> userService.changeUserPassword(nonExistingUserName, newPassword));
+
+        verify(userRepository, never()).save(any());
+    }
+
+    @Test
+    public void testChangeUserPassword_UserFound() {
+        String existingUserName = "existingUser";
+        String oldPassword = "oldPassword";
+        String newPassword = "newPassword";
+
+        User existingUser = new User();
+        existingUser.setUserName(existingUserName);
+        existingUser.setUserPassword(passwordEncoder.encode(oldPassword));
+
+        when(userRepository.findByUserName(existingUserName)).thenReturn(Optional.of(existingUser));
+        when(passwordEncoder.encode(newPassword)).thenReturn("encodedNewPassword");
+
+        userService.changeUserPassword(existingUserName, newPassword);
+
+        assertEquals("encodedNewPassword", existingUser.getUserPassword());
+        verify(userRepository, times(1)).save(existingUser);
+
+        assertFalse(passwordEncoder.matches(newPassword, existingUser.getUserPassword()));
     }
 
     @Test
