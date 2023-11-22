@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.resume</groupId>
     <artifactId>resume</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>resume-api</name>
     <description>Demo project to demonstrate my software engineering skills</description>
     <properties>
