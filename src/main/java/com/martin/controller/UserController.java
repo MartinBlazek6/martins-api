@@ -24,25 +24,18 @@ public class UserController {
     public ResponseEntity<UserRecord> registerNewUser(
             @RequestBody User user,
             @RequestHeader(required = false) String apiKey) {
-        try {
-            user = userService.registerNewUser(user, API_KEY.equals(apiKey));
-            return new ResponseEntity<>(new UserRecord(user.getUserName(), user.getUserFirstName(), user.getUserLastName(), user.getRole()), HttpStatus.ACCEPTED);
-        } catch (UserAlreadyExistException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
+        user = userService.registerNewUser(user, API_KEY.equals(apiKey));
+        return new ResponseEntity<>(new UserRecord(user.getUserName(), user.getUserFirstName(), user.getUserLastName(), user.getRole()), HttpStatus.ACCEPTED);
     }
 
     @PreAuthorize("hasRole('Admin')")
     @PatchMapping("/updateUserPassword")
-    public ResponseEntity<?> changeUserPassword(@RequestBody ChangeUserPasswordRecord userPasswordRecord) {
-        try {
-            if (userPasswordRecord.newPassword().equals(userPasswordRecord.repeatedNewPassword())) {
-                userService.changeUserPassword(userPasswordRecord.userName(), userPasswordRecord.newPassword());
-                return new ResponseEntity<>("Passwords updated", HttpStatus.OK);
-            }
+    public ResponseEntity<String> changeUserPassword(@RequestBody ChangeUserPasswordRecord userPasswordRecord) {
+        if (userPasswordRecord.newPassword().equals(userPasswordRecord.repeatedNewPassword())) {
+            userService.changeUserPassword(userPasswordRecord.userName(), userPasswordRecord.newPassword());
+            return new ResponseEntity<>("Passwords updated", HttpStatus.OK);
+        } else {
             return new ResponseEntity<>("Passwords should be same", HttpStatus.NOT_ACCEPTABLE);
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
