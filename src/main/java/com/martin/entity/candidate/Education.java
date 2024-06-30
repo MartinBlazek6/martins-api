@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @AllArgsConstructor
@@ -20,8 +21,13 @@ public class Education {
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
     private String description;
+
+    @NotBlank(message = "Duration cannot be blank")
     private String duration;
 
     @ManyToOne

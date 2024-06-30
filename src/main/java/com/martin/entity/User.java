@@ -1,17 +1,31 @@
 package com.martin.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
+@Data
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @NotBlank(message = "Username cannot be blank")
     private String userName;
+
+    @NotBlank(message = "First name cannot be blank")
     private String userFirstName;
+
+    @NotBlank(message = "Last name cannot be blank")
     private String userLastName;
+
+    @Pattern(regexp =
+            "(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$",
+            message = "Minimum eight characters, at least one letter, one number and one special character.")
     private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
@@ -22,53 +36,7 @@ public class User {
                     @JoinColumn(name = "ROLE_ID")
             }
     )
+
     private Set<Role> role;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserFirstName() {
-        return userFirstName;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUserLastName() {
-        return userLastName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public Set<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }
 }
