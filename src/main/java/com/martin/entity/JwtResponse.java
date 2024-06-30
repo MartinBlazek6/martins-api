@@ -1,7 +1,9 @@
 package com.martin.entity;
 
 import com.martin.entity.records.UserRecord;
+import lombok.*;
 
+@Data
 public class JwtResponse {
 
 //    private User user;
@@ -13,19 +15,4 @@ public class JwtResponse {
         this.jwtToken = jwtToken;
     }
 
-    public UserRecord getUser() {
-        return user;
-    }
-
-    public void setUser(UserRecord user) {
-        this.user = user;
-    }
-
-    public String getJwtToken() {
-        return jwtToken;
-    }
-
-    public void setJwtToken(String jwtToken) {
-        this.jwtToken = jwtToken;
-    }
 }
