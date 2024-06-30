@@ -6,8 +6,8 @@ import lombok.*;
 @Data
 public class JwtResponse {
 
-//    private User user;
     private UserRecord user;
+
     private String jwtToken;
 
     public JwtResponse(UserRecord user, String jwtToken) {

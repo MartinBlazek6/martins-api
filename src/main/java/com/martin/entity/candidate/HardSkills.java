@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @AllArgsConstructor
@@ -21,8 +23,13 @@ public class HardSkills {
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotBlank(message = "Technology cannot be blank")
     private String technology;
-    private String level;
+
+    @NotNull(message = "Level cannot be null")
+    @Enumerated(EnumType.STRING)
+    private Level level;
 
     @ManyToOne
     @JoinColumn(name = "resume_id")

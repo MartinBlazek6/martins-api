@@ -6,6 +6,7 @@ import lombok.*;
 public class JwtRequest {
 
     private String userName;
+
     private String userPassword;
 
 }
