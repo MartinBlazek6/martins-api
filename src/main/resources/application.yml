@@ -6,8 +6,6 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: false
       INDENT_OUTPUT: true
 
-
-
   application:
     name: flywayapp
   datasource:
@@ -28,3 +26,4 @@ spring:
     schemas: ${MYSQLDB_NAME}
     user: ${MYSQLDB_ROOT_USER}
     password: ${MYSQLDB_ROOT_PASSWORD}
+
