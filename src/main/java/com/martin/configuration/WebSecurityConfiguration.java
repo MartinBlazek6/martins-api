@@ -41,7 +41,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers(
                         "/api/authenticate",
                         "/api/registerNewUser",
-                        "/api/forRecruiters/**").permitAll()
+                        "/api/forRecruiters/**",
+                        "/v2/api-docs",
+                        "/swagger-resources/**",
+                        "/swagger-ui/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()
