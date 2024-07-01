@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity<UserRecord> registerNewUser(
             @ApiParam(value = "User object containing user details", required = true)
             @Valid @RequestBody User user,
-            @ApiParam(value = "API key for authentication", required = false)
+            @ApiParam(value = "API key for authentication")
             @RequestHeader(required = false) String apiKey) {
         user = userService.registerNewUser(user, API_KEY.equals(apiKey));
         return new ResponseEntity<>(new UserRecord(user.getUserName(), user.getUserFirstName(), user.getUserLastName(), user.getRole()), HttpStatus.ACCEPTED);
