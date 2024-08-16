@@ -15,10 +15,16 @@ import io.swagger.annotations.ApiParam;
 @Api(tags = "JWT Authentication API")
 public class JwtController {
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
 
-    @ApiOperation(value = "Generate JWT Token", notes = "Endpoint to authenticate user and generate JWT token")
+    @Autowired
+    public JwtController(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
+
+    @ApiOperation(value = "Generate JWT Token",
+            notes = "Authenticate user and generate a JWT token",
+            response = JwtResponse.class)
     @PostMapping("/authenticate")
     public JwtResponse createJwtToken(
             @ApiParam(value = "JWT Request object containing username and password", required = true)
